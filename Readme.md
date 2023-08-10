@@ -62,3 +62,11 @@ The workflow can be triggered using `./test.sh`
 - How assesments will be done in the functions.
 - How to trigger a workflow with different url from the openapi spec? What happens if the host is not neede?
 
+
+## Examples:
+
+Serverless workflow examples:
+https://github.com/kiegroup/kogito-examples/tree/stable/serverless-workflow-examples
+
+Editor of workflows:
+https://start.kubesmarts.org/#/d0602783-7c17-4805-a9b2-77c0772c9afc/file/order.sw.json
