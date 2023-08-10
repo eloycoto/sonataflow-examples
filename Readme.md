@@ -70,3 +70,13 @@ https://github.com/kiegroup/kogito-examples/tree/stable/serverless-workflow-exam
 
 Editor of workflows:
 https://start.kubesmarts.org/#/d0602783-7c17-4805-a9b2-77c0772c9afc/file/order.sw.json
+
+
+
+## Data Index utilities:
+
+- Graphql interface:
+    https://sonataflow.org/serverlessworkflow/latest/data-index/data-index-core-concepts.html#data-index-graphql
+
+- Openapi spec: (curl http://172.18.0.2:32202/q/openapi)
+    https://pastebin.com/qC494vf4
