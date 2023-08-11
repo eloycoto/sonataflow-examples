@@ -60,6 +60,8 @@ The workflow can be triggered using `./test.sh`
 - The operator should point to a single dataindex instance.
 - The way to do escalations are not yet clear.
 - How assesments will be done in the functions.
+    - To list workflows in the dataindex `make list-workflows`
+    - [ ] Labels per workflow definition? Is that an option?
 - How to trigger a workflow with different url from the openapi spec? What happens if the host is not neede?
 
 
