@@ -1,0 +1,51 @@
+---
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlowPlatform
+metadata:
+  name: sonataflow-platform
+spec:
+  build:
+    config:
+      registry:
+        address: "quay.io/parodos"
+        organization: "parodos"
+        secret: parodos-kogitoexample-pull-secret
+      strategyOptions:
+        KanikoBuildCacheEnabled: "true"
+---
+apiVersion: sonataflow.org/v1alpha08
+kind: SonataFlow
+metadata:
+  name: eloy-di
+  annotations:
+    sonataflow.org/description: Eloy example on k8s!
+    sonataflow.org/version: 0.0.2
+    sonataflow.org/profile: prod
+spec:
+  resources:
+    configMaps:
+      - configMap:
+          name: service-files
+        workflowPath: specs
+  flow:
+    annotations:
+      - test
+      - foo
+    functions:
+    - name: book
+      operation: "specs/openapi.json#get_book_book_get"
+      type: rest
+    start: openapiCall
+    states:
+    - name: openapiCall
+      type: "operation"
+      end: true
+      actions:
+      - name: "bookAction"
+        functionRef:
+          refName: book
+          arguments:
+            age: 10
+            author: "${.userData}"
+
+
