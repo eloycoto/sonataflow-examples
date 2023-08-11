@@ -1,0 +1,14 @@
+
+resources:
+- postgres.yaml
+- data-index.yaml
+- kafka.yaml
+- zookeeper.yaml
+
+secretGenerator:
+- name: postgres-secrets
+  literals:
+  - POSTGRES_USER=parodos
+  - POSTGRES_PASSWORD=parodos
+  - POSTGRES_DB=parodos
+  - PGDATA=/var/lib/postgresql/data/mydata

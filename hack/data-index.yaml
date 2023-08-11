@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-index
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-index
+  template:
+    metadata:
+      labels:
+        app: data-index
+    spec:
+      containers:
+      - name: data-index
+        image: quay.io/kiegroup/kogito-data-index-postgresql:1.42
+        ports:
+        - containerPort: 8080
+        env:
+        - name: QUARKUS_DATASOURCE_JDBC_URL
+          value: "jdbc:postgresql://postgres:5432/parodos"
+        - name: QUARKUS_DATASOURCE_USERNAME
+          value: parodos
+        - name: QUARKUS_DATASOURCE_PASSWORD
+          value: parodos
+        - name: QUARKUS_HTTP_CORS_ORIGINS
+          value: "/.*/"
+        - name: QUARKUS_PROFILE
+          value: http-events-support
+        - name: KOGITO_DATA_INDEX_QUARKUS_PROFILE
+          value: http-events-support
+        - name: QUARKUS_FLYWAY_MIGRATE_AT_START
+          value: "true"
+        - name: QUARKUS_FLYWAY_TABLE
+          value: data-index-flyway
+        - name: QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION
+          value: update
+        - name: KOGITO_DATA_INDEX_PROPS
+          value: "-Dquarkus.hibernate-orm.database.generation=update -Dquarkus.log.category.\"org.kie.kogito.index\".min-level=DEBUG -Dquarkus.log.category.\"org.kie.kogito.index\".level=DEBUG"
